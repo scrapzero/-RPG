@@ -16,7 +16,7 @@ class CMapJiki{
 	float max_dx ,max_dy ; //ƒV[ƒ“Ø‚è‘Ö‚¦‚Ìü‚è‚Ì‚½‚ß
 	bool pregobattle ,gobattle;	//‘˜‹öŒn“
 
-	bool stop ,movecontrol ,right ,left,up ,down ; //ˆÚ“®Œn
+	bool stop ,movecontrol,junjo ,right ,left,up ,down ; //ˆÚ“®Œn
 	CMapJiki(float _x ,float _y );
 	void CDraw();
 	void CMove();

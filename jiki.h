@@ -3,8 +3,9 @@
 #include"Suken.h"
 #include"picture.h"
 #include"Gage.h"
+#include"math.h"
 
-
+#define radian 0.01744//１度
 
 
 
@@ -23,7 +24,7 @@ class CBattleJiki{
 	private:
 
 		bool sflag ,judge;	//撃っている途中,当たったか
-		bool center_f ;
+		bool center_f ;//低速モード時の中心表示
 		bool stopf;
 		int atype ,anumber ;
 		float x , y, vx, vy;
@@ -69,8 +70,8 @@ class CJikiAtack{
 class CJikiStatus{
 private:
 	int revel ,exp ;
-	int hp ,mp ,atack ,dfe ,spd ; //基本ステータス
-	int fire ,reef ,water ,light ,dark ,thunder ,ice ; //属性値
+	int hp ,mp ,atc ,dfe ,spd ; //基本ステータス
+	int fire ,window,ground ,water  ; //属性値
 
 
 public:

@@ -73,8 +73,10 @@ void CBattleJiki::CPreBattle(){
 	
 	if(stopf==true){
 
-		max_dx-=0.72;
-		
+
+		if(max_dx>-2){
+			max_dx-=0.72;
+		}
 
 		for(int x=0 ;x<max_dx ;x++){
 				for(int y=0 ;y<max_dy ;y++){
@@ -110,12 +112,37 @@ void CBattleJiki::CMove(){
 
 	if(Event.key.GetPush(Event.key.UP)){
 		vy=-3.5;	
+
+		if(Event.key.GetPush(Event.key.RIGHT) && x+vx<510 && y+vy>30){
+			vx=cos(315*radian)*3.5;
+			vy=sin(315*radian)*3.5;
+		}
+
+		if(Event.key.GetPush(Event.key.LEFT) && x+vx>22 && y+vy>30){	
+			vx=cos(225*radian)*3.5;
+			vy=sin(225*radian)*3.5;
+		}
+
 	}
 
 
 	if(Event.key.GetPush(Event.key.DOWN)){
-		vy=3.8;	
+		vy=3.5;	
+
+		if(Event.key.GetPush(Event.key.RIGHT) && x+vx<510 && y+vy<574){
+			vx=cos(45*radian)*3.5;
+			vy=sin(45*radian)*3.5;
+		}
+
+		if(Event.key.GetPush(Event.key.LEFT) && x+vx>22 && y+vy<574){
+			vx=cos(135*radian)*3.5;
+			vy=sin(135*radian)*3.5;
+		}
+
 	}
+
+
+
 
 	if(Event.key.GetPush(Event.key.LSHIFT)){
 		vx/=2.2;

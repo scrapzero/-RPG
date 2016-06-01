@@ -16,6 +16,7 @@ CMapJiki::CMapJiki(float _x ,float _y){
 
 	stop=true;	//Ž~‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
 	movecontrol=false;
+	junjo=false;
 	right=false;
 	left=false;
 	up=false;
@@ -36,48 +37,87 @@ void CMapJiki::CDraw(){
 void CMapJiki::CMove(){
 
 	if(movecontrol==false){
-		if(stop==true ){
 
-			if(Event.key.GetPush(Event.key.RIGHT) && jikix<780 && left==false){
-				right=true;
-				stop=false;
-			}
+		switch(junjo){
 
-			if(Event.key.GetPush(Event.key.LEFT) && jikix>0 && right==false){
-				left=true;
-				stop=false;
-			}
+		case true:
 
-			if(Event.key.GetPush(Event.key.UP) && jikiy>-10 && down==false){
-				up=true;
-				stop=false;
-			}
+				if(Event.key.GetPush(Event.key.RIGHT) && jikix<780 && left==false && stop==true){
+					right=true;
+					stop=false;
+					junjo=false;
+				}
+
+				if(Event.key.GetPush(Event.key.LEFT) && jikix>0 && right==false && stop==true){
+					left=true;
+					stop=false;
+					junjo=false;
+				}
+
+				if(Event.key.GetPush(Event.key.UP) && jikiy>-10 && down==false && stop==true){
+					up=true;
+					stop=false;
+					junjo=false;
+				}
 
 
-			if(Event.key.GetPush(Event.key.DOWN) && jikiy<570 && up==false){
-				down=true;
-				stop=false;
-			}
+				if(Event.key.GetPush(Event.key.DOWN) && jikiy<570 && up==false&& stop==true){
+					down=true;
+					stop=false;
+					junjo=false;
+				}
+
+			break;
+
+		case false:
+
+
+				if(Event.key.GetPush(Event.key.UP) && jikiy>-10 && down==false && stop==true){
+					up=true;
+					stop=false;
+					junjo=true;
+				}
+
+
+				if(Event.key.GetPush(Event.key.DOWN) && jikiy<570 && up==false&& stop==true){
+					down=true;
+					stop=false;
+					junjo=true;
+				}
+
+				
+				if(Event.key.GetPush(Event.key.RIGHT) && jikix<780 && left==false && stop==true){
+					right=true;
+					stop=false;
+					junjo=true;
+				}
+
+				if(Event.key.GetPush(Event.key.LEFT) && jikix>0 && right==false && stop==true){
+					left=true;
+					stop=false;
+					junjo=true;
+				}
+
+
+			break;
 
 		}
-
-
 
 
 		if(right==true){
-			jikix+=2.5;
+			jikix+=2.5*2;
 		}
 
 		if(left==true){
-			jikix-=2.5;
+			jikix-=2.5*2;
 		}
 
 		if(up==true){
-			jikiy-=2.5;
+			jikiy-=2.5*2;
 		}
 
 		if(down==true){
-			jikiy+=2.5;
+			jikiy+=2.5*2;
 		}
 
 	}
@@ -87,7 +127,7 @@ void CMapJiki::CMove(){
 	if( (int)jikix %20 == 0 && ((int)jikiy+10) %20 == 0 && stop==false ){
 		
 		
-		if ( GetRand(100)<(int)soguritsu && soguritsu>=8){
+		if ( GetRand(100)<(int)soguritsu && soguritsu>=10){
 			pregobattle=true;
 			movecontrol=true;
 		}

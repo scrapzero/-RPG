@@ -1,7 +1,6 @@
 #include"MyScene.h"
 
 
-
 CScene	STITLE,
 		SMAP,
 		SBATTLE;
@@ -37,6 +36,7 @@ void DrawGameTitle(){
 	if(Event.key.GetPush(Event.key.RETURN)){
 			GoGameMap();
 	}
+
 
 
 }
