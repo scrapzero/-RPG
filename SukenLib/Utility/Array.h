@@ -1,21 +1,25 @@
 #pragma once
+#include"../Manager.h"
 #include"Debug.h"
+
+namespace suken{
+
+
 template<typename T>
-class Array {
+class CArray {
 public:
-	Array(T intial, unsigned int _xSize, unsigned int _ySize = 1, unsigned int _zSize = 1) {
+	CArray(unsigned int _xSize, unsigned int _ySize = 1, unsigned int _zSize = 1) {
 		data = new T[_xSize * _ySize * _zSize];
 		arraySize = _xSize * _ySize * _zSize;
 		xSize = _xSize;
 		ySize = _ySize;
 		zSize = _zSize;
-		Fill(intial);
 	}
 
-	~Array() {
+	~CArray() {
 		delete[] data;
 	}
-
+	
 	T & operator [](unsigned int i) {
 		return at(i);
 	}
@@ -62,4 +66,6 @@ private:
 	unsigned int ySize;
 	unsigned int zSize;
 };
+
+}
 

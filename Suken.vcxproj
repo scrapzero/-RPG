@@ -92,6 +92,7 @@
     <ClCompile Include="Judge.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Menue.cpp" />
     <ClCompile Include="Midi.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MyScene.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="SukenLib\System\System.cpp" />
     <ClCompile Include="SukenLib\Utility\Array.cpp" />
     <ClCompile Include="SukenLib\Utility\Data.cpp" />
+    <ClCompile Include="SukenLib\Utility\Debug.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -122,6 +124,7 @@
     <ClInclude Include="jiki.h" />
     <ClInclude Include="Judge.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Menue.h" />
     <ClInclude Include="Midi.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MyScene.h" />

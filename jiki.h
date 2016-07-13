@@ -3,6 +3,7 @@
 #include"Suken.h"
 #include"picture.h"
 #include"Gage.h"
+#include"SaveData.h"
 #include"math.h"
 
 #define radian 0.01744//１度
@@ -70,12 +71,15 @@ class CJikiAtack{
 class CJikiStatus{
 private:
 	int revel ,exp ;
-	int hp ,mp ,atc ,dfe ,spd ; //基本ステータス
-	int fire ,window,ground ,water  ; //属性値
-
+	int hp, maxhp ,se ,maxse ,atc ,def ,spd ; //基本ステータス
+	int fire ,wind ,earth ,water  ; //属性値
+	void DrawStatusWindow();
+	CJikiStatus();
 
 public:
-
+	friend void LoadJikiStatus();
+	friend void DrawJikiStatus();
+	friend void DeleteJikiStatus();
 };
 
 

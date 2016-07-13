@@ -30,10 +30,10 @@
       <UniqueIdentifier>{feaaf5be-fcee-42ba-a7ce-2045c2af79a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダーファイル">
-      <UniqueIdentifier>{0d80e38f-0c27-45e0-a759-02fdf500de8b}</UniqueIdentifier>
+      <UniqueIdentifier>{5b5ad7e6-e8ad-472f-bb5a-1a5fbaf79c76}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソースファイル">
-      <UniqueIdentifier>{c136ecd8-477f-4cf6-a0ee-9a0e5862a048}</UniqueIdentifier>
+      <UniqueIdentifier>{8c9de433-63b0-4a99-ac99-aa051f140b4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,7 +46,6 @@
     <ClCompile Include="SukenLib\System\System.cpp">
       <Filter>SukenLib\System</Filter>
     </ClCompile>
-    <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp">
       <Filter>SukenLib\GameEngine\Event</Filter>
     </ClCompile>
@@ -83,45 +82,32 @@
     <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp">
       <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClCompile>
-    <ClCompile Include="Midi.cpp">
-      <Filter>SukenLib\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="SukenLib\Utility\Array.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Decolate.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Gage.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="jiki.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Judge.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="WinMain.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Move.cpp">
-      <Filter>ソースファイル</Filter>
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Decolate.cpp" />
+    <ClCompile Include="Gage.cpp" />
+    <ClCompile Include="jiki.cpp" />
+    <ClCompile Include="Judge.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Move.cpp" />
+    <ClCompile Include="MyScene.cpp" />
+    <ClCompile Include="picture.cpp" />
+    <ClCompile Include="SaveData.cpp" />
+    <ClCompile Include="Midi.cpp">
+      <Filter>SukenLib\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="MyScene.cpp">
-      <Filter>ソースファイル</Filter>
+    <ClCompile Include="SukenLib\Utility\Debug.cpp">
+      <Filter>SukenLib\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="picture.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveData.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
+    <ClCompile Include="Menue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
@@ -139,7 +125,6 @@
     <ClInclude Include="SukenLib\System\System.h">
       <Filter>SukenLib\System</Filter>
     </ClInclude>
-    <ClInclude Include="Suken.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Event.h">
       <Filter>SukenLib\GameEngine\Event</Filter>
     </ClInclude>
@@ -176,44 +161,30 @@
     <ClInclude Include="SukenLib\Utility\Data.h">
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Midi.h">
-      <Filter>SukenLib\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h">
       <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Utility\Array.h">
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.h">
+    <ClInclude Include="Suken.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Decolate.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="Decolate.h" />
+    <ClInclude Include="Gage.h" />
+    <ClInclude Include="jiki.h" />
+    <ClInclude Include="Judge.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Move.h" />
+    <ClInclude Include="MyScene.h" />
+    <ClInclude Include="picture.h" />
+    <ClInclude Include="SaveData.h" />
+    <ClInclude Include="Midi.h">
+      <Filter>SukenLib\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Gage.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="jiki.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Judge.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MyScene.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="picture.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveData.h">
-      <Filter>ヘッダーファイル</Filter>
+    <ClInclude Include="Menue.h">
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

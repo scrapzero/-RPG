@@ -15,7 +15,7 @@ int bar[3];
 int gage[4];
 int jikiatack[3];
 int panel;
-
+int window[6];
 
 
 
@@ -51,6 +51,8 @@ void AwakePicture(){
 	jikiatack[0]=LoadGraph("zero/soadatack.png");
 
 	panel=LoadGraph("zero/panel.png");
+
+	window[0]=LoadGraph("zero/StatusWindow.png");
 
 }
 
@@ -107,3 +109,6 @@ int GetPanel(){
 	return panel;
 }
 
+int GetWindow(int type){
+	return window[type];
+}

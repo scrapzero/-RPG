@@ -28,7 +28,7 @@ CMapJiki::CMapJiki(float _x ,float _y){
 
 
 void CMapJiki::CDraw(){
-
+	
 	DrawBox(jikix ,jikiy ,jikix+20 ,jikiy+30 ,RED,true);
 	
 }
@@ -127,12 +127,12 @@ void CMapJiki::CMove(){
 	if( (int)jikix %20 == 0 && ((int)jikiy+10) %20 == 0 && stop==false ){
 		
 		
-		if ( GetRand(100)<(int)soguritsu && soguritsu>=10){
+		if ( GetRand(100)<(int)soguritsu && soguritsu>=8){
 			pregobattle=true;
 			movecontrol=true;
 		}
 
-		soguritsu+=0.6;
+		soguritsu+=0.30;
 
 		stop=true;
 
@@ -140,7 +140,7 @@ void CMapJiki::CMove(){
 
 	//ëòãˆånìù
 
-
+	DEBUG_PRINT_VALUE(soguritsu);
 
 	if( (int)jikix %20 == 0 ){
 		
@@ -197,6 +197,8 @@ void CMap::CDraw(){
 	switch(type){
 
 		case MTEST:
+
+			DrawBox(0 ,0 ,800 ,600 ,BLUE,true);
 
 			for(int x=0 ;x<40 ;x++){
 				for(int y=0 ;y<30 ;y++){

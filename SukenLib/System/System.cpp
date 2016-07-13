@@ -1,7 +1,6 @@
 #include"System.h"
-#include <Utility/Utility.h>
-//Singleton
-suken::CSystem System;
+#include "Utility/Utility.h"
+#include"../GameEngine/Game.h"
 
 suken::CSystem::CSystem()
 {
@@ -13,6 +12,8 @@ suken::CSystem::CSystem()
 	targetFps = 0.0f;
 	screenShotGrHandleAdress = nullptr;
 	loadingImgPath = "";
+	window_w = WINDOW_WIDTH;
+	window_h = WINDOW_HEIGHT;
 }
 suken::CSystem::~CSystem()
 {
@@ -22,7 +23,7 @@ void suken::CSystem::Awake()
 {
 	//ゲームの超基本設定、普通何もいじらない
 	SetWindowIconID( 101 ) ;//アイコンのやつ
-	SetGraphMode( WINDOW_WIDTH ,  WINDOW_HEIGHT , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
+	SetGraphMode( window_w ,  window_h , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
 	ChangeWindowMode(TRUE);
 	SetAlwaysRunFlag(TRUE);//常時起動するのでTRUE
 	SetOutApplicationLogValidFlag( FALSE );//ログ出力抑制するのでFALSE
@@ -32,7 +33,9 @@ void suken::CSystem::Awake()
 	if(loadingImgPath != ""){
 		loadingImg = LoadGraph(loadingImgPath.c_str());
 	}
-	DrawExtendGraph(0,0,WINDOW_WIDTH,WINDOW_HEIGHT,loadingImg,true);
+	DrawExtendGraph(0,0,System.GetWindowX(),System.GetWindowY(),loadingImg,true);
+	dispX = GetSystemMetrics(SM_CXSCREEN);
+	dispY = GetSystemMetrics(SM_CYSCREEN);
 	//リフレッシュレートの取得
 	HDC hdc;
 	hdc = GetDC( GetMainWindowHandle() );//デバイスコンテキストの取得
@@ -40,6 +43,11 @@ void suken::CSystem::Awake()
 	ReleaseDC( GetMainWindowHandle() , hdc );//デバイスコンテクストの解放
 
 	display = CreateDC(TEXT("DISPLAY") , nullptr , nullptr , nullptr);
+
+	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
+		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
+
+	settings.input.AddEventListener(Event.EVERY_FRAME,SettingLoop);
 
 #ifdef USE_LUA
 	Lua = luaL_newstate();
@@ -81,6 +89,9 @@ void suken::CSystem::Wait_Loading()
 }
 void suken::CSystem::Update()
 {
+	if (Event.key.GetPush(Event.key.S) && Event.key.GetPush(Event.key.K) && (Event.key.GetPush(Event.key.RCONTROL)|| Event.key.GetPush(Event.key.LCONTROL))) {
+		Game.AddChild(&this->settings);
+	}
 	//臨時
 	//N = (int)(GetFps()+0.5);
 	//
@@ -103,7 +114,7 @@ void suken::CSystem::Wait()
 {
 		
 #ifdef DEBUG_DRAW
-	DrawFormatString(0, 5, WHITE, "%.1f", fps);
+	DrawFormatString(0, 0, WHITE, "%.1f", fps);
 #endif
 	if(targetFps != 0.0f){
 		int tookTime = now - startTime;	//かかった時間
@@ -125,7 +136,9 @@ void suken::CSystem::TakeScreenShot()
 	if(screenShotFlag){
 		screenShotFlag = false;
 		if(screenShotGrHandleAdress != nullptr){
-			*screenShotGrHandleAdress = GetDrawScreen();
+			int screenShot = MakeGraph(this->GetWindowX(),this->GetWindowY());
+			GetDrawScreenGraph(0,0,this->GetWindowX(), this->GetWindowY(),screenShot);
+			*screenShotGrHandleAdress = screenShot;
 		}
 		screenShotGrHandleAdress = nullptr;
 	}
@@ -183,7 +196,48 @@ HDC suken::CSystem::GetDisplayDC()
 	return display;
 }
 #ifdef USE_LUA
-lua_State* CSystem::GetLua(){
+lua_State* CSystem::GetLua()
+{
 	return Lua;
 }
 #endif
+void suken::CSystem::SetWindowSize( int width , int height )
+{
+	window_w = width;
+	window_h = height;
+}
+
+int suken::CSystem::GetWindowX()
+{
+	return window_w; 
+}
+
+int suken::CSystem::GetWindowY()
+{
+	return window_h; 
+}
+
+void suken::CSystem::ExitFrame()
+{
+	TakeScreenShot();
+}
+
+int suken::CSystem::GetDispX() 
+{
+	return dispX;
+}
+
+int suken::CSystem::GetDispY() 
+{
+	return dispY;
+}
+//Singleton
+suken::CSystem System;
+
+
+void suken::SettingLoop()
+{
+	if (Event.key.GetPush(Event.key.ESCAPE)) {
+		Game.RemoveChild();
+	}
+}

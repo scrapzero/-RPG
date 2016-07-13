@@ -13,7 +13,7 @@
 
 
 //CBullet *b[10];
-void Awake(){
+void suken::Awake(){
 	
 	
 
@@ -35,14 +35,14 @@ void Awake(){
 }
 
 
-void GameLoopEnter(){
+void suken::GameLoopEnter(){
 	
 
 	//b[1]->Draw();
 	//b[2]->Draw();
 }
 
-void GameLoopExit(){
+void suken::GameLoopExit(){
 
 }
 

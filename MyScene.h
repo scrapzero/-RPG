@@ -8,6 +8,7 @@
 #include"Map.h"
 #include"jiki.h"
 #include"SaveData.h"
+#include"Menue.h"
 
 
 
@@ -21,15 +22,20 @@ extern CScene	STITLE,
 
 void AwakeScene();
 
+
 void DrawGameTitle();
-
-void DrawGameMap();
-
-void DrawGameBattle();
 
 void GoGameTitle();
 
+void ExitGameTitle();
+
+
+void DrawGameMap();
+
 void GoGameMap();
+
+
+void DrawGameBattle();
 
 void GoGameBattle();
 

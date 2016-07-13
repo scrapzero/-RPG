@@ -5,9 +5,9 @@ CScene	STITLE,
 		SMAP,
 		SBATTLE;
 
-CSaveData *savedata;
 
-extern CBattleJiki *battlejiki;
+
+//extern CBattleJiki *battlejiki;
 
 
 
@@ -35,6 +35,7 @@ void DrawGameTitle(){
 
 	if(Event.key.GetPush(Event.key.RETURN)){
 			GoGameMap();
+			ExitGameTitle();
 	}
 
 
@@ -52,7 +53,9 @@ void DrawGameMap(){
 		DeleteMap();
 	}
 
+	DrawMenue();
 
+	
 }
 
 
@@ -66,10 +69,7 @@ void DrawGameBattle(){
 	DrawBattleJiki();
 
 
-	if(Event.key.GetPush(Event.key.BACK)){
-			GoGameTitle();
-			ExitGameBattle();
-	}
+	
 
 
 	DrawGraph(0,0,GetFrame(0),true);
@@ -80,9 +80,14 @@ void DrawGameBattle(){
 
 		
 
-	if(battlejiki!=NULL){
+//	if(battlejiki!=NULL){
 		DrawCGage(GetBattleJikiAgage());
 		DrawPreBattle();
+	//}
+
+		if(Event.key.GetPush(Event.key.BACK)){
+			GoGameTitle();
+			ExitGameBattle();
 	}
 }
 
@@ -95,18 +100,23 @@ void DrawGameBattle(){
 void GoGameTitle(){
 	Game.RemoveChild();
 	Game.AddChild(&STITLE);
+	DeleteJikiStatus();
+	DeleteMenue();
 }
+
+void ExitGameTitle(){
+	LoadCSaveData();
+	LoadJikiStatus();
+	LoadMenue();
+}
+
 
 void GoGameMap(){
 	
 	Game.RemoveChild();
 	Game.AddChild(&SMAP);
 	LoadMap(0 ,-10 ,MTEST);
-
 	
-	savedata=new CSaveData();
-	
-	savedata->Save();
 }
 
 

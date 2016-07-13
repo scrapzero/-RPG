@@ -2,6 +2,7 @@
 
 CBattleJiki *battlejiki;
 CJikiAtack *jikiatack[400];
+CJikiStatus *jikistatus;
 
 
 CBattleJiki::CBattleJiki(float _x,float _y ,int _atype){
@@ -97,6 +98,10 @@ void CBattleJiki::CPreBattle(){
 
 
 void CBattleJiki::CMove(){
+
+	//DEBUG_PRINT_VALUE(x);
+	//debug.PrintKeyPush(Event.key.Z,"Z");
+	//debug.PrintJudge(,)
 
 	vx=0;
 	vy=0;
@@ -234,6 +239,56 @@ void CBattleJiki::CAtack(){
 }
 
 
+float GetBattleJikiAgage(){
+	return battlejiki->agage;
+}
+
+
+void LoadBattleJiki(){
+	battlejiki = new CBattleJiki(200,500,SOAD);
+	
+}
+
+
+void DrawPreBattle(){
+	battlejiki->CPreBattle();	
+}
+
+
+
+void DrawBattleJiki(){
+	
+	battlejiki->CDraw();
+
+	if(battlejiki->stopf==false){
+		battlejiki->CMove();
+		battlejiki->CAtack();
+	}
+
+}
+
+
+
+
+void DeleteBattleJiki(){
+	delete battlejiki;
+	battlejiki= NULL;
+
+	for(int i=0;i<400;i++){
+			if(jikiatack[i]!=NULL){
+				delete jikiatack[i];
+			jikiatack[i]= NULL;
+			}
+	}
+
+	DeleateCGage();
+}
+
+
+
+
+
+
 
 CJikiAtack::CJikiAtack(float _x ,float _y,int _type){
 	x=_x;
@@ -263,56 +318,11 @@ void CJikiAtack::CMove(){
 
 
 
-
-
-
-
-
-void LoadBattleJiki(){
-	battlejiki = new CBattleJiki(200,500,SOAD);
-	
-}
-
-
-void DrawPreBattle(){
-	battlejiki->CPreBattle();	
-}
-
-
-
-void DrawBattleJiki(){
-	
-	battlejiki->CDraw();
-
-	if(battlejiki->stopf==false){
-		battlejiki->CMove();
-		battlejiki->CAtack();
-	}
-
-}
-
-
-
-void DeleteBattleJiki(){
-	delete battlejiki;
-	battlejiki= NULL;
-
-	for(int i=0;i<400;i++){
-			if(jikiatack[i]!=NULL){
-				delete jikiatack[i];
-			jikiatack[i]= NULL;
-			}
-	}
-
-	DeleateCGage();
-}
-
 void JudgeBattleJiki(float _x,float _y,int _r){
 	if( (_x - battlejiki->x )*(_x - battlejiki->x ) + (_y - battlejiki->y )*(_y - battlejiki->y ) < _r * _r){
 		battlejiki->judge=true;
 	}
 }
-
 
 
 
@@ -336,8 +346,52 @@ void DeleteJikiAtack(int number){
 
 
 
-float GetBattleJikiAgage(){
-	return battlejiki->agage;
+
+
+CJikiStatus::CJikiStatus(){
+	revel=GetLevelSaveData();
+	exp=GetExpSaveData();
+	hp=GetHpSaveData();
+	maxhp=GetMaxHpSaveData();
+	se=GetSeSaveData();
+	maxse=GetMaxSeSaveData();
+	atc=GetAtcSaveData();
+	def=GetDefSaveData();
+	spd=GetSpdSaveData();
+	fire=GetFireSaveData();
+	wind=GetWindSaveData();
+	earth=GetearthSaveData();
+	water=GetWaterSaveData();
 }
 
 
+
+
+
+
+
+void CJikiStatus::DrawStatusWindow(){
+	DrawGraph(10,10,GetWindow(0),true);
+
+
+}
+
+
+
+
+void LoadJikiStatus(){
+	jikistatus=new CJikiStatus();
+}
+
+void DrawJikiStatus(){
+
+	jikistatus->DrawStatusWindow();
+	
+}
+
+void DeleteJikiStatus(){
+	if(jikistatus!=NULL){
+		delete jikistatus;
+		jikistatus=NULL;
+	}
+}

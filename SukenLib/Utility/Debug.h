@@ -1,6 +1,11 @@
 #pragma once
+#include"../Manager.h"
 #include "DxLib.h"
 #include "Utility.h"
+#include<vector>
+#include<windows.h>
+
+#define DEBUG_PRINT_VALUE(value) debug.PrintValue( #value ,value)
 
 namespace suken{
 
@@ -225,4 +230,42 @@ inline void DebugDx(const char* format, ...)
 }
 
 
+
+// メッセージ処理用関数
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+class CDebugWindow {
+public:
+	CDebugWindow();
+	~CDebugWindow();
+	void Awake(HINSTANCE hInstance, HINSTANCE hPreInst, int nCmdShow);
+	void Print(const char* format , ...);
+	void PrintValue(const char* format,int value);
+	void PrintValue(const char* format,float value);
+	void PrintValue(const char* format,double value);
+	void PrintJudge(bool flag, const char* format);
+	void PrintKeyPush(int key, const char* format);
+	void PrintKeyUp(int key, const char* format);
+	void PrintKeyDown(int key, const char* format);
+	void Loop();
+	
+
+private:
+	HDC device;
+	HWND hWnd;
+	MSG msg;
+	WNDCLASS myProg;
+	std::vector<std::string> message;
+	struct JudgeIn{
+		std::string str;
+		bool flag;
+	};
+	std::vector<JudgeIn> judge;
+
+	int count;
+};
+
+
 }
+
+extern suken::CDebugWindow debug;

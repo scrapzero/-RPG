@@ -30,3 +30,5 @@ int GetGage(int type);
 int GetJikiAtack(int type);
 
 int GetPanel();
+
+int GetWindow(int type);
